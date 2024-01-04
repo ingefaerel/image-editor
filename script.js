@@ -67,3 +67,22 @@ function handleUpload() {
         alert('Please select a valid image file.');
     }
 }
+
+function handleClear() {
+    const imageContainer = document.getElementById('image-container');
+    imageContainer.innerHTML = ''; // Clear the image container
+
+    const fileInput = document.getElementById('file-input');
+    const newFileInput = document.createElement('input');
+    newFileInput.type = 'file';
+    newFileInput.id = 'file-input';
+
+    // Replace the existing file input with the new one
+    fileInput.parentNode.replaceChild(newFileInput, fileInput);
+
+    // Add event listener to the new file input
+    newFileInput.addEventListener('change', handleUpload);
+}
+
+document.getElementById('file-input').addEventListener('change', handleUpload);
+document.getElementById('clear-button').addEventListener('click', handleClear);
