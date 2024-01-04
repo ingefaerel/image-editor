@@ -1,8 +1,19 @@
+const fileInput = document.getElementById('file-input');
+const imageContainer = document.getElementById('image-container');
+const widthInput = document.getElementById('width-input');
+const heightInput = document.getElementById('height-input');
+
+
+
+
+function clearDimensionsInput() {
+    widthInput.value = null;
+    heightInput.value = null;
+}
+
+
 function handleUpload() {
-    const fileInput = document.getElementById('file-input');
-    const imageContainer = document.getElementById('image-container');
-    const widthInput = document.getElementById('width-input');
-    const heightInput = document.getElementById('height-input');
+
 
     const file = fileInput.files[0];
 
@@ -26,6 +37,7 @@ function handleUpload() {
                     target.setAttribute('data-y', y);
                 }
             })
+
             .resizable({
                 edges: { left: true, right: true, bottom: true, top: true },
                 onmove: function (event) {
@@ -48,28 +60,47 @@ function handleUpload() {
                     target.style.transform = 'translate(' + x + 'px,' + y + 'px)';
                     target.setAttribute('data-x', x);
                     target.setAttribute('data-y', y);
+
+                    widthInput.value = Math.round(event.rect.width);
+                    heightInput.value = Math.round(event.rect.height);
+
+
+
                 }
             });
+
+
         widthInput.addEventListener('input', function () {
             const newWidth = parseFloat(widthInput.value);
             const aspectRatio = imageElement.width / imageElement.height;
+
             imageElement.style.width = newWidth + 'px';
             imageElement.style.height = (newWidth / aspectRatio) + 'px';
+
+            heightInput.value = (newWidth / aspectRatio);
+
         });
 
         heightInput.addEventListener('input', function () {
             const newHeight = parseFloat(heightInput.value);
             const aspectRatio = imageElement.width / imageElement.height;
+
             imageElement.style.height = newHeight + 'px';
             imageElement.style.width = (newHeight * aspectRatio) + 'px';
+
+            widthInput.value = (newHeight / aspectRatio);
+
         });
+
+
     } else {
         alert('Please select a valid image file.');
     }
 }
 
+
 function handleClear() {
-    const imageContainer = document.getElementById('image-container');
+
     imageContainer.innerHTML = ''; // Clear the image container
 
     const fileInput = document.getElementById('file-input');
@@ -82,7 +113,15 @@ function handleClear() {
 
     // Add event listener to the new file input
     newFileInput.addEventListener('change', handleUpload);
+
+
+    clearDimensionsInput();
+
+
 }
+
+
+
 
 document.getElementById('file-input').addEventListener('change', handleUpload);
 document.getElementById('clear-button').addEventListener('click', handleClear);
