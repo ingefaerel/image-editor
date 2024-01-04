@@ -33,9 +33,13 @@ function handleUpload() {
                     var x = (parseFloat(target.getAttribute('data-x')) || 0);
                     var y = (parseFloat(target.getAttribute('data-y')) || 0);
 
-                    // Update the element's width and height
+                    // Calculate the aspect ratio
+                    var aspectRatio = target.offsetWidth / target.offsetHeight;
+
+                    // Update the element's width and height based on the aspect ratio
                     target.style.width = event.rect.width + 'px';
-                    target.style.height = event.rect.height + 'px';
+                    target.style.height = (event.rect.width / aspectRatio) + 'px';
+
 
                     // Translate the element based on the change in width and height
                     x += event.deltaRect.left;
@@ -48,12 +52,16 @@ function handleUpload() {
             });
         widthInput.addEventListener('input', function () {
             const newWidth = parseFloat(widthInput.value);
+            const aspectRatio = imageElement.width / imageElement.height;
             imageElement.style.width = newWidth + 'px';
+            imageElement.style.height = (newWidth / aspectRatio) + 'px';
         });
 
         heightInput.addEventListener('input', function () {
             const newHeight = parseFloat(heightInput.value);
+            const aspectRatio = imageElement.width / imageElement.height;
             imageElement.style.height = newHeight + 'px';
+            imageElement.style.width = (newHeight * aspectRatio) + 'px';
         });
     } else {
         alert('Please select a valid image file.');
