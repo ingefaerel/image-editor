@@ -1,15 +1,13 @@
-#draggable-element {
-    width: 120px;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 1rem;
-    background-color: #29e;
-    color: white;
-    font-size: 20px;
-    font-family: sans-serif;
-
-    touch-action: none;
-
-    /* This makes things *much* easier */
+#work-area {
+    width: 594px;
+    height: 840px;
     box-sizing: border-box;
+    outline: solid grey;
+    padding: 0px;
+    margin: 0px;
+}
+
+img {
+    max-width: 594px;
+    max-height: 840px;
 }

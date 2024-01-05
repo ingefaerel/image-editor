@@ -2,7 +2,7 @@ const fileInput = document.getElementById('file-input');
 const imageContainer = document.getElementById('image-container');
 const widthInput = document.getElementById('width-input');
 const heightInput = document.getElementById('height-input');
-
+const workArea = document.getElementById('work-area');
 
 
 
@@ -27,6 +27,15 @@ function handleUpload() {
 
         interact(imageElement)
             .draggable({
+
+                modifiers: [
+                    interact.modifiers.restrict({
+                        restriction: workArea,
+                        elementRect: { top: 0, left: 0, bottom: 1, right: 1 },
+                        endOnly: true
+                    })
+                ],
+
                 onmove: function (event) {
                     var target = event.target;
                     var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
@@ -40,6 +49,14 @@ function handleUpload() {
 
             .resizable({
                 edges: { left: true, right: true, bottom: true, top: true },
+                modifiers: [
+                    interact.modifiers.restrictSize({
+                        max: { width: 594, height: 840 },
+                    }),
+                    interact.modifiers.restrictEdges({
+                        outer: workArea,
+                    }),
+                ],
                 onmove: function (event) {
                     var target = event.target;
                     var x = (parseFloat(target.getAttribute('data-x')) || 0);

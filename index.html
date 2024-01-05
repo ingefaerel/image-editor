@@ -5,20 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/interactjs@1.10.11/dist/interact.min.js"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <title>Interact.js Example</title>
 </head>
 
 <body>
 
-    <button id="clear-button">Clear</button>
-    <label for="width-input">Width:</label>
-    <input type="number" id="width-input" placeholder="">
-    <label for="heigth-input">Height:</label>
-    <input type="number" id="height-input" placeholder="">
-    <input type="file" id="file-input" accept="image/*">
-    <div id="image-container"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 gy-5">
+                <div>
+
+                </div>
+
+                <label for="width-input" class="form-label mb-5">Width:</label>
+                <input type="number" id="width-input" placeholder="">
+                <label for="heigth-input" class="form-label mb-5">Height:</label>
+                <input type="number" id="height-input" placeholder="">
+
+                <div>
+                    <input type="file" id="file-input" accept="image/*">
+
+                </div>
+                <div class="mb-5"></div>
+                <button id="clear-button" class="btn btn-danger ">Clear</button>
+            </div>
+            <div class="col-6 gy-5">
+                <div id="work-area">
+                    <div id="image-container"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
 
 
     <script src="script.js">
