@@ -7,6 +7,7 @@ const widthInput = document.getElementById('width-input');
 const heightInput = document.getElementById('height-input');
 
 
+
 function clearDimensionsInput() {
     widthInput.value = null;
     heightInput.value = null;
@@ -38,5 +39,6 @@ function handleClear() {
 
     clearDimensionsInput();
 }
+
 
 export { handleUpload, handleClear };

@@ -5,6 +5,8 @@ document.getElementById('clear-button').addEventListener('click', handleClear);
 
 
 
+
+
 // const fileInput = document.getElementById('file-input');
 // const imageContainer = document.getElementById('image-container');
 // const widthInput = document.getElementById('width-input');
