@@ -38,6 +38,8 @@ function handleClear() {
     fileInput.value = null;
 
     clearDimensionsInput();
+
+    coverage.innerText = null;
 }
 
 
