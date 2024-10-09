@@ -33,8 +33,8 @@ function setupInteract(imageElement) {
       }
 
       // Update the input values with rounded results
-      widthInput.value = Math.round(width);
-      heightInput.value = Math.round(height);
+      widthInput.value = Math.round(width / 2);
+      heightInput.value = Math.round(height / 2);
     }
 
     // Set initial values for inputs
@@ -93,16 +93,16 @@ function setupInteract(imageElement) {
 
           // Update inputs only if the values are valid
           if (!isNaN(newWidth) && newWidth > 0) {
-            widthInput.value = Math.round(newWidth);
+            widthInput.value = Math.round(newWidth / 2);
           }
           if (!isNaN(newHeight) && newHeight > 0) {
-            heightInput.value = Math.round(newHeight);
+            heightInput.value = Math.round(newHeight / 2);
           }
         },
       });
 
     widthInput.addEventListener("input", function () {
-      const newWidth = parseFloat(widthInput.value);
+      const newWidth = parseFloat(widthInput.value * 2);
 
       // Check if newWidth is a valid number
       if (!isNaN(newWidth) && newWidth > 0) {
@@ -111,14 +111,14 @@ function setupInteract(imageElement) {
         imageElement.style.width = newWidth + "px";
         imageElement.style.height = newHeight + "px";
 
-        heightInput.value = Math.round(newHeight);
+        heightInput.value = Math.round(newHeight / 2);
       } else {
         heightInput.value = ""; // Clear height if width is invalid
       }
     });
 
     heightInput.addEventListener("input", function () {
-      const newHeight = parseFloat(heightInput.value);
+      const newHeight = parseFloat(heightInput.value * 2);
 
       // Check if newHeight is a valid number
       if (!isNaN(newHeight) && newHeight > 0) {
@@ -127,7 +127,7 @@ function setupInteract(imageElement) {
         imageElement.style.height = newHeight + "px";
         imageElement.style.width = newWidth + "px";
 
-        widthInput.value = Math.round(newWidth);
+        widthInput.value = Math.round(newWidth / 2);
       } else {
         widthInput.value = ""; // Clear width if height is invalid
       }
