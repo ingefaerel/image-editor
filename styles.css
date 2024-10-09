@@ -12,21 +12,60 @@ img {
   max-height: 840px;
 }
 .input-group {
-  display: flex; /* Use flexbox for alignment */
-  align-items: center; /* Align items vertically center */
+  display: flex;
+  align-items: center;
 }
-
-/* .unit-label {
-  /* Space between input and unit label */
 
 .input-field {
   margin: 5px;
+  border: 1px solid rgb(26, 26, 48);
+  border-radius: 20px;
+  width: 100px;
 }
 
 .form-label {
-  margin: 10px;
+  margin: 10px 10px 10px 5px;
+}
+
+.width {
+  margin-right: 15px;
+}
+
+#white-count {
+  margin-top: 20px;
 }
 
 .slider {
   width: 300px;
+}
+
+.section {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tools {
+  background-color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.white {
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.dimensions {
+  background-color: rgb(255, 255, 255);
+
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.form-control {
+  border-radius: 10px;
 }

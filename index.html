@@ -17,33 +17,40 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-6 gy-5">
-          <div>
-            <input type="file" id="file-input" accept="image/*" />
-          </div>
-          <div class="input-group mb-3">
-            <label for="width-input" class="form-label">Width: </label>
+        <div class="col-6 gy-5 tools">
+          <div class="section file">
             <input
-              type="number"
-              id="width-input"
-              class="input-field"
-              placeholder=""
+              type="file"
+              id="file-input"
+              class="form-control"
+              accept="image/*"
             />
-            <span class="unit-label">mm</span>
+          </div>
+          <div class="section dimensions">
+            <div class="input-group mb-3">
+              <label for="width-input" class="form-label width">Width: </label>
+              <input
+                type="number"
+                id="width-input"
+                class="input-field"
+                placeholder=""
+              />
+              <span class="unit-label">mm</span>
+            </div>
+
+            <div class="input-group mb-3">
+              <label for="height-input" class="form-label">Height: </label>
+              <input
+                type="number"
+                id="height-input"
+                class="input-field"
+                placeholder=""
+              />
+              <span class="unit-label">mm</span>
+            </div>
           </div>
 
-          <div class="input-group mb-3">
-            <label for="height-input" class="form-label">Height: </label>
-            <input
-              type="number"
-              id="height-input"
-              class="input-field"
-              placeholder=""
-            />
-            <span class="unit-label">mm</span>
-          </div>
-
-          <div>
+          <div class="section white">
             <label for="white-count">White mask:</label>
             <input
               type="range"
@@ -56,21 +63,22 @@
             <span id="value">Value: 50</span>
           </div>
 
-          <div>
+          <div class="section percentege">
             <button id="count-button" class="btn btn-primary">
               Count Percentage coverage
             </button>
             <p id="coverage"></p>
           </div>
 
-          <div>
+          <div class="section price">
             <button id="count-price" class="btn btn-primary">
               Calculate Final Price
             </button>
             <p id="final-price"></p>
           </div>
-
-          <button id="clear-button" class="btn btn-danger">Clear</button>
+          <div class="section">
+            <button id="clear-button" class="btn btn-danger">Clear</button>
+          </div>
         </div>
 
         <div class="col-6 gy-5">

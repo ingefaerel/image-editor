@@ -3,7 +3,6 @@ const widthInput = document.getElementById("width-input");
 const heightInput = document.getElementById("height-input");
 
 function setupInteract(imageElement) {
-  // Wait for the image to load before setting up interaction
   if (imageElement.complete) {
     initializeInteraction();
   } else {
@@ -21,7 +20,6 @@ function setupInteract(imageElement) {
       let width = originalWidth;
       let height = originalHeight;
 
-      // Check if either dimension exceeds the max size
       if (width > 594 || height > 840) {
         if (width / 594 > height / 840) {
           width = 594;
@@ -32,12 +30,10 @@ function setupInteract(imageElement) {
         }
       }
 
-      // Update the input values with rounded results
       widthInput.value = Math.round(width / 2);
       heightInput.value = Math.round(height / 2);
     }
 
-    // Set initial values for inputs
     updateDimensions(originalWidth, originalHeight);
 
     interact(imageElement)
@@ -79,7 +75,6 @@ function setupInteract(imageElement) {
           const newWidth = event.rect.width;
           const newHeight = newWidth / aspectRatio;
 
-          // Update the element's width and height
           target.style.width = newWidth + "px";
           target.style.height = newHeight + "px";
 
@@ -91,7 +86,6 @@ function setupInteract(imageElement) {
           target.setAttribute("data-x", x);
           target.setAttribute("data-y", y);
 
-          // Update inputs only if the values are valid
           if (!isNaN(newWidth) && newWidth > 0) {
             widthInput.value = Math.round(newWidth / 2);
           }
@@ -104,7 +98,6 @@ function setupInteract(imageElement) {
     widthInput.addEventListener("input", function () {
       const newWidth = parseFloat(widthInput.value * 2);
 
-      // Check if newWidth is a valid number
       if (!isNaN(newWidth) && newWidth > 0) {
         const newHeight = newWidth / aspectRatio;
 
@@ -113,14 +106,13 @@ function setupInteract(imageElement) {
 
         heightInput.value = Math.round(newHeight / 2);
       } else {
-        heightInput.value = ""; // Clear height if width is invalid
+        heightInput.value = "";
       }
     });
 
     heightInput.addEventListener("input", function () {
       const newHeight = parseFloat(heightInput.value * 2);
 
-      // Check if newHeight is a valid number
       if (!isNaN(newHeight) && newHeight > 0) {
         const newWidth = newHeight / aspectRatio;
 
@@ -129,7 +121,7 @@ function setupInteract(imageElement) {
 
         widthInput.value = Math.round(newWidth / 2);
       } else {
-        widthInput.value = ""; // Clear width if height is invalid
+        widthInput.value = "";
       }
     });
   }

@@ -7,13 +7,18 @@ const countPriceBtn = document.getElementById("count-price");
 const fullCoveragePrice = 200;
 
 function countPrice() {
-  const coveragePrice = Math.round(
-    (fullCoveragePrice * coveragePercentage) / 100
-  );
-  console.log(coveragePrice);
-  const whitePrice = Math.round(coveragePrice * (closestValue / 100));
-  console.log(whitePrice);
-  finalPriceDisplay.innerText = fullCoveragePrice + whitePrice;
+  const imageElement = document.querySelector("#image-container img");
+  if (imageElement) {
+    const coveragePrice = Math.round(
+      (fullCoveragePrice * coveragePercentage) / 100
+    );
+    console.log(coveragePrice);
+    const whitePrice = Math.round(coveragePrice * (closestValue / 100));
+    console.log(whitePrice);
+    finalPriceDisplay.innerText = fullCoveragePrice + whitePrice;
+  } else {
+    finalPriceDisplay.innerText = "Please select an image";
+  }
 }
 
 countPriceBtn.addEventListener("click", countPrice);
