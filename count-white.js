@@ -1,7 +1,7 @@
 const slider = document.getElementById("white-count");
 const valueDisplay = document.getElementById("value");
 
-const stopValues = [50, 75, 100, 125, 150];
+const stopValues = [0, 50, 75, 100, 125, 150];
 let closestValue = stopValues[0];
 
 slider.value = closestValue;
