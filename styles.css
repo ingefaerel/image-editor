@@ -1,7 +1,7 @@
 #work-area {
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="10" height="10" fill="none" stroke="lightgrey" stroke-width="1"/></svg>');
-  width: 594px;
-  height: 840px;
+  width: 595px;
+  height: 841px;
   box-sizing: border-box;
   outline: solid grey;
   padding: 0px;
@@ -21,7 +21,7 @@ img {
 .input-field {
   margin: 5px;
   border: 1px solid rgb(26, 26, 48);
-  border-radius: 20px;
+
   width: 100px;
 }
 

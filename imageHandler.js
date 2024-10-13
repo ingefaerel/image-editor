@@ -5,7 +5,7 @@ const imageContainer = document.getElementById("image-container");
 const widthInput = document.getElementById("width-input");
 const heightInput = document.getElementById("height-input");
 const finalPriceDisplay = document.getElementById("final-price");
-
+const quntity = document.getElementById("quantity");
 function clearDimensionsInput() {
   widthInput.value = null;
   heightInput.value = null;
@@ -39,6 +39,7 @@ function handleClear() {
 
   coverage.innerText = null;
   finalPriceDisplay.innerText = null;
+  quantity.value = 0;
 }
 
 export { handleUpload, handleClear };
