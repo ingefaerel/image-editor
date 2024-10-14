@@ -114,7 +114,7 @@ function setupInteract(imageElement) {
       const newHeight = parseFloat(heightInput.value * 2);
 
       if (!isNaN(newHeight) && newHeight > 0) {
-        const newWidth = newHeight / aspectRatio;
+        const newWidth = newHeight * aspectRatio;
 
         imageElement.style.height = newHeight + "px";
         imageElement.style.width = newWidth + "px";

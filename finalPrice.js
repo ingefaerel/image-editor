@@ -5,8 +5,8 @@ const finalPriceDisplay = document.getElementById("final-price");
 const countPriceBtn = document.getElementById("count-price");
 const quantity = document.getElementById("quantity");
 
-const fullCoveragePrice = 200; // No white mask eg. black
-const minimumPrice = 100;
+// const fullCoveragePrice = 180; // No white mask eg. black
+// const minimumPrice = 50;
 let discount = 0;
 function countDiscount() {
   if (coveragePercentage < 50) {
@@ -52,22 +52,43 @@ function countDiscount() {
   }
 }
 
+function calculateValue(percentage) {
+  let value;
+
+  if (percentage >= 50 && percentage <= 100) {
+    value = 150 + ((percentage - 50) / 50) * (180 - 150);
+  } else if (percentage > 0 && percentage < 50) {
+    value = 100 + (percentage / 50) * 50;
+  } else if (percentage === 50) {
+    value = 150;
+  } else if (percentage === 100) {
+    value = 180;
+  } else {
+    throw new Error("Percentage must be between 1 and 100");
+  }
+
+  return value;
+}
+
 function countPrice() {
   const imageElement = document.querySelector("#image-container img");
+  let finalPrice;
+  let whiteCoeff = coveragePercentage > 10 ? 1.5 : 1.9;
+
   if (imageElement) {
+    const coveragePrice = calculateValue(coveragePercentage);
+    console.log(coveragePercentage);
+    console.log(whiteCoeff);
     countDiscount();
-    const coveragePrice = Math.round(
-      fullCoveragePrice * (coveragePercentage / 100)
-    );
-    // console.log(coveragePrice);
-    const whitePrice = Math.round(coveragePrice * (closestValue / 100));
 
-    const totalPrice = coveragePrice + whitePrice;
-    const finalPrice = totalPrice - Math.round(totalPrice * discount);
+    if (closestValue == 0) {
+      finalPrice = Math.round(coveragePrice);
+    } else {
+      const whitePrice = coveragePrice * (closestValue / whiteCoeff / 100);
+      finalPrice = Math.round(coveragePrice + whitePrice);
+    }
 
-    console.log(finalPrice);
-    finalPriceDisplay.innerText =
-      finalPrice > minimumPrice ? finalPrice : finalPrice + minimumPrice;
+    finalPriceDisplay.innerText = finalPrice;
   } else {
     finalPriceDisplay.innerText = "Please select an image";
   }
