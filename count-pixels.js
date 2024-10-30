@@ -1,6 +1,7 @@
 const countButton = document.getElementById("count-button");
-const workAreaPixels = 594 * 840;
+const workAreaPixels = 594 * 841;
 const coverage = document.getElementById("coverage");
+
 let coveragePercentage = 0;
 
 function countColoredPixels(imageElement) {
@@ -14,11 +15,9 @@ function countColoredPixels(imageElement) {
 
   const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 
-  // Iterate through the pixels and count the colored ones
   let coloredPixels = 0;
 
   for (let i = 0; i < imageData.data.length; i += 4) {
-    // Check if the pixel is colored (not fully transparent)
     if (imageData.data[i + 3] > 0) {
       coloredPixels++;
     }

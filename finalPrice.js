@@ -21,7 +21,6 @@ const highCoverageDiscounts = [
   { min: 50, max: 100, discount: 0.25 },
 ];
 
-// Function to calculate discount based on quantity and coverage percentage
 function getDiscount() {
   const quantityValue = parseInt(quantity.value, 10);
   const discounts =
@@ -33,7 +32,6 @@ function getDiscount() {
   return discountObj ? discountObj.discount : 0;
 }
 
-// Function to calculate coverage value based on percentage
 function calculateValue(percentage) {
   if (percentage >= 50 && percentage <= 100) {
     return 150 + ((percentage - 50) / 50) * (180 - 150);
@@ -48,11 +46,9 @@ function calculateValue(percentage) {
   }
 }
 
-// Function to calculate the final price
 function countPrice() {
   const imageElement = document.querySelector("#image-container img");
 
-  // Return early if no image is selected
   if (!imageElement) {
     finalPriceDisplay.innerText = "Please select an image";
     return;
@@ -71,11 +67,9 @@ function countPrice() {
     finalPrice = Math.round(coveragePrice + whitePrice);
   }
 
-  // Apply discount
   finalPrice = finalPrice * (1 - discount);
 
-  finalPriceDisplay.innerText = Math.round(finalPrice); // Display price with 2 decimals
+  finalPriceDisplay.innerText = Math.round(finalPrice);
 }
 
-// Event listener to trigger price calculation
 countPriceBtn.addEventListener("click", countPrice);

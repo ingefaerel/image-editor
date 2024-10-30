@@ -5,7 +5,7 @@ const imageContainer = document.getElementById("image-container");
 const widthInput = document.getElementById("width-input");
 const heightInput = document.getElementById("height-input");
 const finalPriceDisplay = document.getElementById("final-price");
-const quntity = document.getElementById("quantity");
+const quantity = document.getElementById("quantity");
 function clearDimensionsInput() {
   widthInput.value = null;
   heightInput.value = null;
@@ -24,6 +24,7 @@ function handleUpload() {
   if (file) {
     const imageUrl = URL.createObjectURL(file);
     const imageElement = createImageElement(imageUrl);
+
     setupInteract(imageElement);
   } else {
     alert("Please select a valid image file.");
@@ -31,7 +32,7 @@ function handleUpload() {
 }
 
 function handleClear() {
-  imageContainer.innerHTML = ""; // Clear the image container
+  imageContainer.innerHTML = "";
 
   fileInput.value = null;
 

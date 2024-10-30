@@ -1,6 +1,7 @@
 const workArea = document.getElementById("work-area");
 const widthInput = document.getElementById("width-input");
 const heightInput = document.getElementById("height-input");
+const rotateButton = document.getElementById("rotate-button");
 
 function setupInteract(imageElement) {
   if (imageElement.complete) {
@@ -11,6 +12,10 @@ function setupInteract(imageElement) {
     };
   }
 
+  let coorW = 594;
+  let coorH = 841;
+  let rotation = 0;
+
   function initializeInteraction() {
     const originalWidth = imageElement.naturalWidth;
     const originalHeight = imageElement.naturalHeight;
@@ -20,12 +25,12 @@ function setupInteract(imageElement) {
       let width = originalWidth;
       let height = originalHeight;
 
-      if (width > 594 || height > 840) {
-        if (width / 594 > height / 840) {
+      if (width > 594 || height > 841) {
+        if (width / 594 > height / 841) {
           width = 594;
           height = width / aspectRatio;
         } else {
-          height = 840;
+          height = 841;
           width = height * aspectRatio;
         }
       }
@@ -45,13 +50,17 @@ function setupInteract(imageElement) {
             endOnly: true,
           }),
         ],
-
         onmove: function (event) {
           const target = event.target;
           let x = (parseFloat(target.getAttribute("data-x")) || 0) + event.dx;
           let y = (parseFloat(target.getAttribute("data-y")) || 0) + event.dy;
 
-          target.style.transform = "translate(" + x + "px, " + y + "px)";
+          if (rotation === 90 || rotation === 270) {
+            target.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+          } else {
+            target.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+          }
+
           target.setAttribute("data-x", x);
           target.setAttribute("data-y", y);
         },
@@ -60,7 +69,7 @@ function setupInteract(imageElement) {
         edges: { left: true, right: true, bottom: true, top: true },
         modifiers: [
           interact.modifiers.restrictSize({
-            max: { width: 594, height: 840 },
+            max: { width: coorW, height: coorH },
           }),
           interact.modifiers.restrictEdges({
             outer: workArea,
@@ -71,18 +80,24 @@ function setupInteract(imageElement) {
           let x = parseFloat(target.getAttribute("data-x")) || 0;
           let y = parseFloat(target.getAttribute("data-y")) || 0;
 
-          // Maintain aspect ratio
-          const newWidth = event.rect.width;
-          const newHeight = newWidth / aspectRatio;
+          // console.log(coorW, coorH);
+          // console.log(rotation);
+          let newWidth, newHeight;
 
-          target.style.width = newWidth + "px";
-          target.style.height = newHeight + "px";
+          if (rotation === 90 || rotation === 270) {
+            newHeight = event.rect.width;
+            newWidth = newHeight * aspectRatio;
+          } else {
+            newWidth = event.rect.width;
+            newHeight = newWidth / aspectRatio;
+          }
 
-          // Translate the element based on the change in width and height
+          target.style.width = `${newWidth}px`;
+          target.style.height = `${newHeight}px`;
+
+          target.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
           x += event.deltaRect.left;
           y += event.deltaRect.top;
-
-          target.style.transform = "translate(" + x + "px," + y + "px)";
           target.setAttribute("data-x", x);
           target.setAttribute("data-y", y);
 
@@ -123,6 +138,26 @@ function setupInteract(imageElement) {
       } else {
         widthInput.value = "";
       }
+    });
+
+    rotateButton.addEventListener("click", function () {
+      let x = parseFloat(imageElement.getAttribute("data-x"));
+      let y = parseFloat(imageElement.getAttribute("data-y"));
+      rotation = (rotation + 90) % 360;
+
+      if (rotation === 90 || rotation === 270) {
+        coorW = 841;
+        coorH = 594;
+        imageElement.style.maxWidth = "841px";
+        imageElement.style.maxHeight = "594px";
+      } else {
+        coorW = 594;
+        coorH = 841;
+        imageElement.style.maxWidth = "594px";
+        imageElement.style.maxHeight = "841px";
+      }
+
+      imageElement.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
     });
   }
 }
