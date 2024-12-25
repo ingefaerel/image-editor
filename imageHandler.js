@@ -6,6 +6,7 @@ const widthInput = document.getElementById("width-input");
 const heightInput = document.getElementById("height-input");
 const finalPriceDisplay = document.getElementById("final-price");
 const quantity = document.getElementById("quantity");
+
 function clearDimensionsInput() {
   widthInput.value = null;
   heightInput.value = null;

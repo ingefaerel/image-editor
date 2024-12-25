@@ -16,6 +16,35 @@ function setupInteract(imageElement) {
   let coorH = 841;
   let rotation = 0;
 
+  function changeRotation() {
+    rotation = (rotation + 90) % 360;
+  }
+
+  function rotateImage() {
+    changeRotation();
+    let x = parseFloat(imageElement.getAttribute("data-x"));
+    let y = parseFloat(imageElement.getAttribute("data-y"));
+
+    imageElement.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+
+    if (rotation === 90 || rotation === 270) {
+      coorW = 841;
+      coorH = 594;
+      // imageElement.style.height = imageElement.style.width;
+      console.log(imageElement.style.width.value);
+      imageElement.style.maxWidth = "841px";
+      imageElement.style.maxHeight = "594px";
+    } else {
+      coorW = 594;
+      coorH = 841;
+      imageElement.style.maxWidth = "594px";
+      imageElement.style.maxHeight = "841px";
+    }
+
+    imageElement.setAttribute("data-x", x);
+    imageElement.setAttribute("data-y", y);
+  }
+
   function initializeInteraction() {
     const originalWidth = imageElement.naturalWidth;
     const originalHeight = imageElement.naturalHeight;
@@ -55,11 +84,7 @@ function setupInteract(imageElement) {
           let x = (parseFloat(target.getAttribute("data-x")) || 0) + event.dx;
           let y = (parseFloat(target.getAttribute("data-y")) || 0) + event.dy;
 
-          if (rotation === 90 || rotation === 270) {
-            target.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
-          } else {
-            target.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
-          }
+          target.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
 
           target.setAttribute("data-x", x);
           target.setAttribute("data-y", y);
@@ -140,25 +165,7 @@ function setupInteract(imageElement) {
       }
     });
 
-    rotateButton.addEventListener("click", function () {
-      let x = parseFloat(imageElement.getAttribute("data-x"));
-      let y = parseFloat(imageElement.getAttribute("data-y"));
-      rotation = (rotation + 90) % 360;
-
-      if (rotation === 90 || rotation === 270) {
-        coorW = 841;
-        coorH = 594;
-        imageElement.style.maxWidth = "841px";
-        imageElement.style.maxHeight = "594px";
-      } else {
-        coorW = 594;
-        coorH = 841;
-        imageElement.style.maxWidth = "594px";
-        imageElement.style.maxHeight = "841px";
-      }
-
-      imageElement.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
-    });
+    rotateButton.addEventListener("click", rotateImage);
   }
 }
 

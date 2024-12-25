@@ -9,6 +9,10 @@
 }
 
 img {
+  box-sizing: border-box;
+  transition: none;
+  will-change: transform;
+  border: 1px solid black;
   max-width: 594px;
   max-height: 841px;
 }
@@ -47,6 +51,13 @@ img {
   flex-direction: column;
   align-items: center;
 }
+.price {
+  margin-bottom: 0;
+}
+
+.percentege {
+  margin-bottom: 0;
+}
 
 .tools {
   background-color: aliceblue;
@@ -70,4 +81,8 @@ img {
 
 .form-control {
   border-radius: 10px;
+}
+
+#final-price {
+  display: inline;
 }
