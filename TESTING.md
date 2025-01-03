@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document outlines the testing approach, test cases, and results for the DTF Printing Price Preview Tool. The tool allows users to upload an image, resize it interactively or manually, and calculates the price based on A3 format coverage, excluding transparent pixels.
+This document outlines the testing approach, test cases, and results for the DTF Printing Price Preview Tool/Image-editor. The tool allows users to upload an image, resize it interactively or manually, count transparent pixels in percentage and calculates the price based on A3 format coverage.
 
 ---
 
@@ -12,8 +12,9 @@ This document outlines the testing approach, test cases, and results for the DTF
 
    - Image upload and display functionality.
    - Interactive and manual resizing.
-   - Cost and A3 coverage calculations.
-   - Transparent pixel detection.
+   - White mask amount altering.
+   - Transparent pixel detection and coverage calculations.
+   - Cost calculations in relation to amount of white mask, coverage and quantity discount.
 
 2. **UI/UX Testing**
 
@@ -23,7 +24,6 @@ This document outlines the testing approach, test cases, and results for the DTF
 3. **Compatibility Testing**
 
    - Browser compatibility testing (Chrome, Firefox, Safari, Edge).
-   - Cross-device testing (desktop, tablet, mobile).
 
 4. **Performance Testing**
 
@@ -36,17 +36,17 @@ This document outlines the testing approach, test cases, and results for the DTF
 
 ### Functional Test Cases
 
-| **Test Case ID** | **Description**                       | **Steps**                                       | **Expected Result**                                                  |
+| **Test Case ID** | **Description**                       | **Test data**                                   | **Expected Result**                                                  |
 | ---------------- | ------------------------------------- | ----------------------------------------------- | -------------------------------------------------------------------- |
-| TC-001           | Verify supported file upload          | Upload a PNG image.                             | The image appears on the canvas without error.                       |
-| TC-002           | Verify unsupported file upload        | Upload a `.docx` file.                          | Error message: "Unsupported file format" is displayed.               |
+| TC-001           | Verify supported file upload          | Upload a PNG, Jpeg, Gif,Webp image.             | The image appears on the canvas without error.                       |
+| TC-002           | Verify unsupported file upload        | Upload a `.docx` file.                          | Doesn't let you choose the format.                                   |
 | TC-003           | Verify image resizing functionality   | Drag a corner of the image to resize.           | The image resizes proportionally and updates dimensions dynamically. |
 | TC-004           | Verify transparent pixel detection    | Upload an image with 50% transparency.          | Transparent pixels are excluded from coverage calculation.           |
 | TC-005           | Verify price calculation after resize | Resize the image and observe the updated price. | Price updates correctly based on new coverage area.                  |
 
 ### Compatibility Test Cases
 
-| **Test Case ID** | **Description**              | **Steps**                                           | **Expected Result**                                        |
+| **Test Case ID** | **Description**              | **Test data**                                       | **Expected Result**                                        |
 | ---------------- | ---------------------------- | --------------------------------------------------- | ---------------------------------------------------------- |
 | CT-001           | Verify browser compatibility | Open the tool on Chrome, Firefox, Safari, and Edge. | The app behaves consistently across all browsers.          |
 | CT-002           | Verify mobile responsiveness | Open the tool on a mobile device.                   | The app adjusts and functions properly on smaller screens. |
@@ -70,6 +70,6 @@ This document outlines the testing approach, test cases, and results for the DTF
 ## Known Issues
 
 1. Performance lags slightly for images larger than 10MB.
-2. Minor alignment issues on certain tablet screen resolutions.
+2. Minor alignment issues of rotated image.
 
 ---
