@@ -46,10 +46,9 @@ This document outlines the testing approach, test cases, and results for the DTF
 
 ### Compatibility Test Cases
 
-| **Test Case ID** | **Description**              | **Test data**                                       | **Expected Result**                                        |
-| ---------------- | ---------------------------- | --------------------------------------------------- | ---------------------------------------------------------- |
-| CT-001           | Verify browser compatibility | Open the tool on Chrome, Firefox, Safari, and Edge. | The app behaves consistently across all browsers.          |
-| CT-002           | Verify mobile responsiveness | Open the tool on a mobile device.                   | The app adjusts and functions properly on smaller screens. |
+| **Test Case ID** | **Description**              | **Test data**                                       | **Expected Result**                               |
+| ---------------- | ---------------------------- | --------------------------------------------------- | ------------------------------------------------- |
+| CT-001           | Verify browser compatibility | Open the tool on Chrome, Firefox, Safari, and Edge. | The app behaves consistently across all browsers. |
 
 ---
 
@@ -63,7 +62,6 @@ This document outlines the testing approach, test cases, and results for the DTF
 | TC-004           | Passed     | Transparent pixel detection is accurate.                   |
 | TC-005           | Passed     | Price calculation updates correctly during resizing.       |
 | CT-001           | Passed     | App behaves consistently on major browsers.                |
-| CT-002           | Passed     | App is fully responsive on mobile devices.                 |
 
 ---
 
